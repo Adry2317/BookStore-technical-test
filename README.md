@@ -15,7 +15,7 @@ Este proyecto está configurado para ejecutarse utilizando Docker y Docker Compo
    Clona este repositorio en tu máquina local:
    ```bash
    git clone https://github.com/Adry2317/BookStore-technical-test.git
-   cd BookStore-technical-test
+   cd BookStore-technical-test/BookStore
 
 
 ## Pasos para la Ejecución
