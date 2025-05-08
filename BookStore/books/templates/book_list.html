@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-center">Books in Stock</h2>
+        <a href="{% url 'buy_new_book' %}" class="btn btn-success">Add New Book</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.price }}$</td>
+                    <td>{{ book.stock }}</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <form action="{% url 'buy_book_stock' book.id %}" method="GET">
+                                {% csrf_token %}
+                                <button class="btn btn-success btn-sm">Restock</button>
+                            </form>
+                            <form action="{% url 'edit_book' book.id %}" method="GET">
+                                {% csrf_token %}
+                                <button class="btn btn-primary btn-sm">Edit</button>
+                            </form>
+                            <form action="{% url 'delete_book' book.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
